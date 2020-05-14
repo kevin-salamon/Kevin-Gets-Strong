@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 var moment = require('moment');
-moment().format();
 var today = moment().format('L');
+console.log(today); // confirmed as mm/dd/yyyy
 
 const entrySchema = new Schema({
     date: {

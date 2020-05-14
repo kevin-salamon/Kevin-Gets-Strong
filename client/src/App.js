@@ -19,6 +19,21 @@ class App extends Component {
     }).catch(err => console.log(err));
   }
 
+  testPost = () => {
+    let testObject = {
+      calories: 10,
+      protein: 1,
+      weight: 50
+    }
+
+    saveEntry(testObject)
+    .then(res => {
+        console.log(res)
+        this.handleGetSavedEntries();
+        alert("New Entry Added!");
+    });
+  }
+
   // handleSubmit = (event) => {                =>   use this in a modal   <=
   //   event.preventDefault();
   //   const newEntry = {
@@ -39,23 +54,8 @@ class App extends Component {
   render() {  
     return (
       <>
-      {/* <div>
-          {!this.state.entries.length ? (
-            <h2>No entries listed.</h2>
-          ) : (
-              this.state.entries.map(entry => {
-                return(
-                  <div key={entry._id}>
-                    <h2>ENTRY DATE: {entry.date}</h2>
-                    <h3>{entry.calories} calories</h3>
-                    <h3>{entry.protein} grams of protein</h3>
-                    <h3>You performed these workouts: {entry.workouts}</h3>
-                    <h3>You weigh {entry.weight} pounds at this date</h3>
-                  </div>
-                );
-              })
-            )}
-      </div> */}
+      <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.testPost}>Block level button</button>
+
       <div className="container entries-list">
 
         <div className="row">
