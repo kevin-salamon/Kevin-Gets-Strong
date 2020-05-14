@@ -1,10 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+var moment = require('moment');
+moment().format();
+var today = moment().format('L');
 
 const entrySchema = new Schema({
     date: {
         type: Date,
-        default: Date.now()
+        default: today
     },
     calories: {
         type: Number
