@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { removeEntry, getSavedEntries, saveEntry } from "./utils/API";
 import "./style.css";
+import NewEntryModal from "./components/NewEntryModal";
 
 class App extends Component {
 
@@ -54,7 +55,9 @@ class App extends Component {
   render() {  
     return (
       <>
-      <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.testPost}>Block level button</button>
+      <NewEntryModal
+      handleGetSavedEntries={this.handleGetSavedEntries}
+      />
 
       <div className="container entries-list">
 
