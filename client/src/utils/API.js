@@ -9,11 +9,16 @@ export const getSavedEntries = () => {
 }
 
 export const removeEntry = entryId => {
-  return axios.delete(`/api/entries/${entryId}`)
+  return axios.delete(`/api/entries/${entryId}`);
+}
+
+export const updateEntry = (entryId, entryData) => {
+  return axios.put(`/api/entries/${entryId}`, entryData);
 }
 
 export default {
   saveEntry,
   getSavedEntries,
   removeEntry,
+  updateEntry
 }

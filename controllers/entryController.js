@@ -20,5 +20,12 @@ module.exports = {
       console.log(err);
       res.json(err);
     });
+  },
+  updateEntry: function(req, res) {
+    db.Entry.findOneAndUpdate({ _id: req.params.id }, req.body)
+    .then(entryData => res.json(entryData)).catch(err => {
+      console.log(err);
+      res.json(err);
+    });
   }
 };

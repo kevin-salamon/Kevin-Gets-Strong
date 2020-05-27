@@ -6,6 +6,7 @@ router.route("/")
     .post(entryController.saveEntry);
 
 router.route("/:id")
-    .delete(entryController.removeEntry);
+    .delete(entryController.removeEntry)
+    .put(entryController.updateEntry);
 
 module.exports = router;
