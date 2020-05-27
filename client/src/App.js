@@ -58,7 +58,7 @@ class App extends Component {
         ) : (
             this.state.entries.map(entry => {
               return(
-                <div className="row" key={entry._id} id={entry._id}>
+                <div className="row" key={entry._id}>
                   <div className="col-sm-2">
                     <h3 className="entry">Date: {entry.date}</h3>
                   </div>
@@ -74,6 +74,7 @@ class App extends Component {
                   <div className="col-sm-2">
                     <UpdateEntryModal
                       handleGetSavedEntries={this.handleGetSavedEntries}
+                      id={entry._id}
                     />
                   </div>
                   <div className="col-sm-2">
