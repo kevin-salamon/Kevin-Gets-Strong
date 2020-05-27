@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { removeEntry, getSavedEntries, saveEntry } from "./utils/API";
+import { removeEntry, getSavedEntries } from "./utils/API";
 import "./style.css";
 import NewEntryModal from "./components/NewEntryModal";
 
@@ -14,42 +14,23 @@ class App extends Component {
   }
 
   handleGetSavedEntries = () => {
-    console.log("Getting saved entries...")
-    getSavedEntries().then((res) => {
-      this.setState({ entries: res.data })
-    }).catch(err => console.log(err));
+    getSavedEntries()
+      .then((res) => {
+        this.setState({ entries: res.data })
+      })
+      .catch(err => console.log(err));
   }
 
-  testPost = () => {
-    let testObject = {
-      calories: 10,
-      protein: 1,
-      weight: 50
-    }
-
-    saveEntry(testObject)
-    .then(res => {
-        console.log(res)
-        this.handleGetSavedEntries();
-        alert("New Entry Added!");
-    });
+  handleRemoveEntry = entryId => {
+    removeEntry(entryId)
+      .then(this.handleGetSavedEntries)
+      .catch(err => console.log(err));
   }
-
-  // handleSubmit = (event) => {                =>   use this in a modal   <=
-  //   event.preventDefault();
-  //   const newEntry = {
-  //       calories: caloriesRef.current.value,
-  //       protein: proteinRef.current.value,
-  //       weight: weightRef.current.value,
-  //   };
-
-  //   console.log(newEntry);
-  //   saveEntry(newEntry)
-  //       .then(res => {
-  //           console.log(res)
-  //           this.handleGetSavedEntries();
-  //       });
-  // 
+  
+  // handleUpdateEntry = (entryId, newEntryStatus) => {
+  //   updateEntry(entryId, newEntryStatus)
+  //     .then(this.handleGetSavedJobs)
+  //     .catch(err => console.log(err));
   // }
 
   render() {  
@@ -76,18 +57,24 @@ class App extends Component {
         ) : (
             this.state.entries.map(entry => {
               return(
-                <div className="row">
-                  <div className="col-sm-3">
+                <div className="row" key={entry._id}>
+                  <div className="col-sm-2">
                     <h3 className="entry">Date: {entry.date}</h3>
                   </div>
-                  <div className="col-sm-3">
+                  <div className="col-sm-2">
                     <h3 className="entry">Calories: {entry.calories} kCal</h3>
                   </div>
-                  <div className="col-sm-3">
+                  <div className="col-sm-2">
                     <h3 className="entry">Protein: {entry.protein} grams</h3>
                   </div>
-                  <div className="col-sm-3">
+                  <div className="col-sm-2">
                     <h3 className="entry">Weight: {entry.weight} lbs</h3>
+                  </div>
+                  <div className="col-sm-2">
+                    <button style={{width: "100%"}}>Edit</button>
+                  </div>
+                  <div className="col-sm-2">
+                    <button style={{width: "100%"}} onClick={() => this.handleRemoveEntry(entry._id)}>Delete</button>
                   </div>
                 </div>
               )
