@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { removeEntry, getSavedEntries } from "./utils/API";
+import { removeEntry, getSavedEntries, updateEntry } from "./utils/API";
 import "./style.css";
 import NewEntryModal from "./components/NewEntryModal";
+import UpdateEntryModal from "./components/UpdateEntryModal";
 
 class App extends Component {
 
@@ -27,17 +28,17 @@ class App extends Component {
       .catch(err => console.log(err));
   }
   
-  // handleUpdateEntry = (entryId, newEntryStatus) => {
-  //   updateEntry(entryId, newEntryStatus)
-  //     .then(this.handleGetSavedJobs)
-  //     .catch(err => console.log(err));
-  // }
+  handleUpdateEntry = (entryId, newEntryStatus) => {
+    updateEntry(entryId, newEntryStatus)
+      .then(this.handleGetSavedJobs)
+      .catch(err => console.log(err));
+  }
 
   render() {  
     return (
       <>
       <NewEntryModal
-      handleGetSavedEntries={this.handleGetSavedEntries}
+        handleGetSavedEntries={this.handleGetSavedEntries}
       />
 
       <div className="container entries-list">
@@ -57,7 +58,7 @@ class App extends Component {
         ) : (
             this.state.entries.map(entry => {
               return(
-                <div className="row" key={entry._id}>
+                <div className="row" key={entry._id} id={entry._id}>
                   <div className="col-sm-2">
                     <h3 className="entry">Date: {entry.date}</h3>
                   </div>
@@ -71,7 +72,9 @@ class App extends Component {
                     <h3 className="entry">Weight: {entry.weight} lbs</h3>
                   </div>
                   <div className="col-sm-2">
-                    <button style={{width: "100%"}}>Edit</button>
+                    <UpdateEntryModal
+                      handleGetSavedEntries={this.handleGetSavedEntries}
+                    />
                   </div>
                   <div className="col-sm-2">
                     <button style={{width: "100%"}} onClick={() => this.handleRemoveEntry(entry._id)}>Delete</button>
