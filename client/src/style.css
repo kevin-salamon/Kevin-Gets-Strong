@@ -3,7 +3,6 @@
     background-color: #2B2D42;
     display: flex;
     justify-content: center;
-    /* flex-direction: column; */
 }
 
 .logo {
@@ -12,13 +11,15 @@
 }
 
 .entries-list {
-    padding: 2%; 
+    padding: 10px; 
     background-color: #92DCE5;
+    border: 2px solid #F8F7F9;
+    height: 500px;
 }
 
 .intro-text {
     font-size: 1.8em;
-    margin: 3%;
+    margin: 1%;
     padding: 1px;
     color: white;
     font-weight: bold;

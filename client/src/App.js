@@ -3,6 +3,8 @@ import { removeEntry, getSavedEntries, updateEntry } from "./utils/API";
 import "./style.css";
 import NewEntryModal from "./components/NewEntryModal";
 import UpdateEntryModal from "./components/UpdateEntryModal";
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 class App extends Component {
 
@@ -12,6 +14,12 @@ class App extends Component {
 
   componentDidMount() {
     this.handleGetSavedEntries();
+    this.showToday();
+  }
+
+  showToday() {
+    const today = Date.now();
+    console.log(today);
   }
 
   handleGetSavedEntries = () => {
@@ -62,10 +70,12 @@ class App extends Component {
         </div>
         ) : (
             this.state.entries.map(entry => {
+              const dateToFormat = entry.date;
               return(
+                <>                
                 <div className="row entry-row" key={entry._id}>
                   <div className="col-sm-2 entry-column">
-                    <h3 className="entry">Date: {entry.date}</h3>
+                    <h3 className="entry">Date: <Moment format="MM/DD/YYYY">{dateToFormat}</Moment></h3>
                   </div>
                   <div className="col-sm-2 entry-column">
                     <h3 className="entry">Calories: {entry.calories} kCal</h3>
@@ -86,6 +96,7 @@ class App extends Component {
                     <button style={{width: "100%"}} className="entry-button" onClick={() => this.handleRemoveEntry(entry._id)}>Delete</button>
                   </div>
                 </div>
+                </>
               )
             })
           )}
