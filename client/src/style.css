@@ -1,10 +1,49 @@
+.header-custom {
+    padding: 10px;
+    background-color: #2B2D42;
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+}
+
+.logo {
+    width: 100px;
+    height: 90px;
+}
+
 .entries-list {
     padding: 2%; 
-    border: 1px solid black;
+    background-color: #92DCE5;
+}
+
+.intro-text {
+    font-size: 1.8em;
+    margin: 3%;
+    padding: 1px;
+    color: white;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.entry-row {
+    margin: 1%;
+    background-color: white;
+}
+
+.entry-column {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
 }
 
 .entry {
     font-size: 1.1em;
-    padding: 5%;
-    border: 1px solid black;
+    padding: 10px;
+}
+
+.entry-button {
+    background-color: #2B2D42;
+    border: 1px solid whitesmoke;
+    color: white;
 }

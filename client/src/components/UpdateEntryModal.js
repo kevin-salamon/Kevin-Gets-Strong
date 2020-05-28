@@ -34,7 +34,7 @@ function UpdateEntryModal(props) {
 
     return (
         <>
-            <button variant="primary" style={{width: "100%"}} onClick={handleShow}>
+            <button variant="primary" style={{width: "100%"}} className="entry-button" onClick={handleShow}>
                 Edit Entry
             </button>
 

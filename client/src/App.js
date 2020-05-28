@@ -37,48 +37,53 @@ class App extends Component {
   render() {  
     return (
       <>
-      <NewEntryModal
-        handleGetSavedEntries={this.handleGetSavedEntries}
-      />
+      <nav className="nav header-custom">
+        <img src={require("./images/logo.png")} className="logo" alt={"logo"} />
+      </nav>
+      <div style={{display: "flex", justifyContent: "center", padding: "10px"}}>
+        <NewEntryModal
+            handleGetSavedEntries={this.handleGetSavedEntries}
+        />
+      </div>
 
       <div className="container entries-list">
 
         <div className="row">
           <div className="col-sm-12">
-            <h1 className="text-center" style={{fontSize: "1.8em", margin: "3%", padding: "1px"}}>Your current stats:</h1>
+            <h1 className="text-center intro-text">Your current stats:</h1>
           </div>
         </div>
 
         {!this.state.entries.length ? (
           <div className="row">
             <div className="col-sm-12">
-              <h1 className="text-center" style={{fontSize: "1.8em", margin: "1%", padding: "1%"}}>No active dates yet. Add today's stats to get started!</h1>
+              <h1 className="text-center intro-text">No active dates yet. Add today's stats to get started!</h1>
             </div>
         </div>
         ) : (
             this.state.entries.map(entry => {
               return(
-                <div className="row" key={entry._id}>
-                  <div className="col-sm-2">
+                <div className="row entry-row" key={entry._id}>
+                  <div className="col-sm-2 entry-column">
                     <h3 className="entry">Date: {entry.date}</h3>
                   </div>
-                  <div className="col-sm-2">
+                  <div className="col-sm-2 entry-column">
                     <h3 className="entry">Calories: {entry.calories} kCal</h3>
                   </div>
-                  <div className="col-sm-2">
+                  <div className="col-sm-2 entry-column">
                     <h3 className="entry">Protein: {entry.protein} grams</h3>
                   </div>
-                  <div className="col-sm-2">
+                  <div className="col-sm-2 entry-column">
                     <h3 className="entry">Weight: {entry.weight} lbs</h3>
                   </div>
-                  <div className="col-sm-2">
+                  <div className="col-sm-2 entry-column">
                     <UpdateEntryModal
                       handleGetSavedEntries={this.handleGetSavedEntries}
                       id={entry._id}
                     />
                   </div>
-                  <div className="col-sm-2">
-                    <button style={{width: "100%"}} onClick={() => this.handleRemoveEntry(entry._id)}>Delete</button>
+                  <div className="col-sm-2 entry-column">
+                    <button style={{width: "100%"}} className="entry-button" onClick={() => this.handleRemoveEntry(entry._id)}>Delete</button>
                   </div>
                 </div>
               )

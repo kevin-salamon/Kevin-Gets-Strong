@@ -36,8 +36,8 @@ function NewEntryModal(props) {
 
     return (
         <>
-            <button variant="primary" className="job-button" onClick={handleShow}>
-                Add Entry
+            <button variant="primary" className="btn entry-button" onClick={handleShow}>
+                Post Today's Entry!
             </button>
 
             <Modal show={show} onHide={handleClose}>
