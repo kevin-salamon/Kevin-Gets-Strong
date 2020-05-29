@@ -87,12 +87,15 @@ class App extends Component {
                     <h3 className="entry">Weight: {entry.weight} lbs</h3>
                   </div>
                   <div className="col-sm-2 entry-column">
+                    <h3 className="entry">Exercises: {entry.workouts}</h3>
+                  </div>
+                  <div className="col-sm-1 entry-column">
                     <UpdateEntryModal
                       handleGetSavedEntries={this.handleGetSavedEntries}
                       id={entry._id}
                     />
                   </div>
-                  <div className="col-sm-2 entry-column">
+                  <div className="col-sm-1 entry-column">
                     <button style={{width: "100%"}} className="entry-button" onClick={() => this.handleRemoveEntry(entry._id)}>Delete</button>
                   </div>
                 </div>
