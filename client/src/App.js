@@ -48,11 +48,15 @@ class App extends Component {
       <nav className="nav header-custom">
         <img src={require("./images/logo.png")} className="logo" alt={"logo"} />
       </nav>
-      <div style={{display: "flex", justifyContent: "center", padding: "10px"}}>
+      {!this.state.entries ? (           // Need to find a way to say "if the array of entry dates includes today's date, don't show the add button"
+        <div></div>
+      ) : (
+        <div style={{display: "flex", justifyContent: "center", padding: "10px"}}>
         <NewEntryModal
             handleGetSavedEntries={this.handleGetSavedEntries}
         />
-      </div>
+        </div>
+      )}
 
       <div className="container entries-list">
 
