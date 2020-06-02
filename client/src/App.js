@@ -5,6 +5,7 @@ import NewEntryModal from "./components/NewEntryModal";
 import UpdateEntryModal from "./components/UpdateEntryModal";
 import Moment from 'react-moment';
 import 'moment-timezone';
+import { Line } from 'react-chartjs-2';
 
 class App extends Component {
 
@@ -41,24 +42,31 @@ class App extends Component {
     let dateArray = [];
 
     for (let i = 0; i < this.state.entries.length; i++) {
-      dateArray.push(this.state.entries[i].date);
+      let formatted = this.state.entries[i].date;
+      dateArray.push(formatted);
     }
 
-    let today = Date.now();
+    let today = new Date();
+    let todayFormatted = today.setHours(0, 0, 0, 0); // placeholder
+
     // define a Date.now(), format both that and the dates in the dateArray. Then do if dateArray.includes(Date.now()) => render nothing, else render the add button
+    console.log(dateArray);
+    console.log(today);
+    console.log(todayFormatted);
 
     return (
       <>
       <nav className="nav header-custom">
         <img src={require("./images/logo.png")} className="logo" alt={"logo"} />
       </nav>
-        {dateArray.includes(today) ? (
+        {(dateArray[dateArray.length - 1] === todayFormatted) ? (
           <div></div>
          ) : (
           <div style={{display: "flex", justifyContent: "center", padding: "10px"}}>
             <NewEntryModal
                 handleGetSavedEntries={this.handleGetSavedEntries}
             />
+            {/* <Moment>{today}</Moment> */}
           </div>
          )}
       <div className="container entries-list">
@@ -111,6 +119,11 @@ class App extends Component {
             })
           )}
       </div>
+      {/* <Line 
+        width={100}
+        height={100}
+        options={{ maintainAspectRatio: false }}
+      /> */}
       </>
     );
   }
