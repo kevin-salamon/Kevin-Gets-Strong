@@ -16,29 +16,6 @@ class App extends Component {
     this.handleGetSavedEntries();
   }
 
-  checkDatesAndRender() {
-    let dateArray = [];
-
-    for (let i = 0; i < this.state.entries.length; i++) {
-      dateArray.push(this.state.entries[i].date);
-    }
-
-    let today = Date.now();
-    // define a Date.now(), format both that and the dates in the dateArray. Then do if dateArray.includes(Date.now()) => render nothing, else render the add button
-    
-    if (dateArray.includes(today)) {
-      return(<div></div>);
-    } else {
-      return(
-      <div style={{display: "flex", justifyContent: "center", padding: "10px"}}>
-        <NewEntryModal
-            handleGetSavedEntries={this.handleGetSavedEntries}
-        />
-      </div>
-      );
-    }
-  }
-
   handleGetSavedEntries = () => {
     getSavedEntries()
       .then((res) => {
@@ -60,12 +37,30 @@ class App extends Component {
   }
 
   render() {  
+
+    let dateArray = [];
+
+    for (let i = 0; i < this.state.entries.length; i++) {
+      dateArray.push(this.state.entries[i].date);
+    }
+
+    let today = Date.now();
+    // define a Date.now(), format both that and the dates in the dateArray. Then do if dateArray.includes(Date.now()) => render nothing, else render the add button
+
     return (
       <>
       <nav className="nav header-custom">
         <img src={require("./images/logo.png")} className="logo" alt={"logo"} />
       </nav>
-      {this.checkDatesAndRender}
+        {dateArray.includes(today) ? (
+          <div></div>
+         ) : (
+          <div style={{display: "flex", justifyContent: "center", padding: "10px"}}>
+            <NewEntryModal
+                handleGetSavedEntries={this.handleGetSavedEntries}
+            />
+          </div>
+         )}
       <div className="container entries-list">
 
         <div className="row">
