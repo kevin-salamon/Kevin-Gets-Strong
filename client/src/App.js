@@ -33,7 +33,7 @@ class App extends Component {
   
   handleUpdateEntry = (entryId, newEntryStatus) => {
     updateEntry(entryId, newEntryStatus)
-      .then(this.handleGetSavedJobs)
+      .then(this.handleGetSavedEntries)
       .catch(err => console.log(err));
   }
 

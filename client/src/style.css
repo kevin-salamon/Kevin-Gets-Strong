@@ -15,6 +15,8 @@
     background-color: #92DCE5;
     border: 2px solid #F8F7F9;
     height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .intro-text {
